@@ -1,0 +1,47 @@
+08/03/y 09:23:48 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\logger.py | Apenas um registro
+08/03/y 09:23:48 | WARNING | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\logger.py | Cuidado pode gerar um erro
+08/03/y 09:23:48 | ERROR | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\logger.py | Aconteceu um erro grave!
+08/03/y 09:23:48 | CRITICAL | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\logger.py | Falha geral
+08/03/y 11:35:03 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:40:42 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:41:10 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:41:58 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:42:50 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:45:46 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:46:01 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:47:36 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:48:40 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:48:56 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:52:07 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+08/03/y 11:52:20 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 09:33:57 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 09:34:25 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 09:34:49 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 09:38:50 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 09:45:11 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 09:45:36 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 09:46:14 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 09:46:38 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 09:47:16 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:19:01 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:19:24 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:20:21 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:20:33 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:21:21 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:21:53 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:22:03 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:22:27 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:26:41 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:34:47 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:36:35 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:39:24 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:45:22 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:48:03 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:49:31 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:54:25 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:54:33 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:55:53 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 10:59:56 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 11:01:22 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+13/03/y 11:01:32 | INFO | C:\Users\bruno.fmendes\source\repos\Python\ProjetoCalculadora\main.py | Iniciei a Interface
+
