@@ -1,8 +1,10 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
-import operator
 from logger import LogManagement
+from os import path
+from decimal import Decimal
+import operator
 
 class MeuApp(QMainWindow):
     def __init__(self):
@@ -12,10 +14,12 @@ class MeuApp(QMainWindow):
         self.operador = None
         self.log = LogManagement(__file__)
 
-        loadUi('interface.ui', self)
+        loadUi(self.localPath('interface.ui'), self)
         self.log.info("Inicialização do programa.")
-
         self.setAcoes()
+
+    def localPath(self, relativo):
+        return f'{path.dirname(path.realpath(__file__))}\\{relativo}'
 
     def setAcoes(self):
         self.conectarBotoesNumericos()
@@ -112,13 +116,14 @@ class MeuApp(QMainWindow):
 
     def adicionarVirgula(self):
         numero = self.pegarDisplay()
-        if "." not in str(numero):
-            numero += "."
-            self.mostrarDisplay(numero)
+        numero_str = str(numero)
+        if "." not in numero_str:
+            numero_str += "."
+            self.mostrarDisplay(numero_str)
             if self.operador is None:
-                self.num1 = str(numero)
+                self.num1 = numero_str
             else:
-                self.num2 = str(numero)
+                self.num2 = numero_str
 
     def limpar(self):
         self.num1 = ""

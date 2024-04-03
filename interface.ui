@@ -17,7 +17,11 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Calculadora</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Calculadora.ico</normaloff>Calculadora.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">	margin: 5px;
