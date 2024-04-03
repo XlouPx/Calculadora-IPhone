@@ -533,7 +533,7 @@
      <string>+/-</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnPorcento">
+   <widget class="QPushButton" name="btnPorcentagem">
     <property name="geometry">
      <rect>
       <x>180</x>

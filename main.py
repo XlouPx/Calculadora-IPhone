@@ -1,124 +1,130 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
+import operator
 from logger import LogManagement
 
 class MeuApp(QMainWindow):
-    num1 = 0
-    num2 = 0
-    numResult = 0
-    op = None
-
     def __init__(self):
         super().__init__()
+        self.num1 = ""
+        self.num2 = ""
+        self.operador = None
+        self.log = LogManagement(__file__)
+
         loadUi('interface.ui', self)
+        self.log.info("Inicialização do programa.")
+
         self.setAcoes()
 
     def setAcoes(self):
-        self.btn0.clicked.connect(lambda: self.btnClicado('0'))
-        self.btn1.clicked.connect(lambda: self.btnClicado('1'))
-        self.btn2.clicked.connect(lambda: self.btnClicado('2'))
-        self.btn3.clicked.connect(lambda: self.btnClicado('3'))
-        self.btn4.clicked.connect(lambda: self.btnClicado('4'))
-        self.btn5.clicked.connect(lambda: self.btnClicado('5'))
-        self.btn6.clicked.connect(lambda: self.btnClicado('6'))
-        self.btn7.clicked.connect(lambda: self.btnClicado('7'))
-        self.btn8.clicked.connect(lambda: self.btnClicado('8'))
-        self.btn9.clicked.connect(lambda: self.btnClicado('9'))
+        self.conectarBotoesNumericos()
+        self.conectarBotoesOperacao()
+        self.conectarBotoesMetodos()
 
-        self.btnMaismenos.clicked.connect(self.inverterSinal)
-        self.btnLimpar.clicked.connect(self.limpar)
-        self.btnIgual.clicked.connect(self.mostrarResultado)
-        self.btnVirgula.clicked.connect(self.adicionarVirgula)
-        
-        self.btnPorcento.clicked.connect(lambda: self.definirOperacao('%'))
-        self.btnMais.clicked.connect(lambda: self.definirOperacao('+'))
-        self.btnDivisao.clicked.connect(lambda: self.definirOperacao('/'))
-        self.btnMenos.clicked.connect(lambda: self.definirOperacao('-'))
-        self.btnVezes.clicked.connect(lambda: self.definirOperacao('*'))
+    def conectarBotoesNumericos(self):
+        botoes_numericos = [getattr(self, f"btn{i}") for i in range(10)]
+        for botao in botoes_numericos:
+            botao.clicked.connect(lambda _, num=botao.text(): self.btnClicado(num))
 
+    def conectarBotoesOperacao(self):
+        botoes_operacao = [self.btnPorcentagem, self.btnMais, self.btnDivisao, self.btnMenos, self.btnVezes]
+        operacoes = [self.porcentagem, operator.add, operator.truediv, operator.sub, operator.mul]
+        for botao, operacao in zip(botoes_operacao, operacoes):
+            if botao:
+                botao.clicked.connect(lambda _, op=operacao, text=botao.text(): self.definirOperacao(op, text))
+
+    def conectarBotoesMetodos(self):
+        botoes_metodos = {
+            self.btnMaismenos: self.inverterSinal,
+            self.btnLimpar: self.limpar,
+            self.btnIgual: self.mostrarResultado,
+            self.btnVirgula: self.adicionarVirgula
+        }
+        for botao, metodo in botoes_metodos.items():
+            if botao:
+                botao.clicked.connect(metodo)
+
+    def btnClicado(self, btn):
+        if self.operador is None:
+            self.num1 += btn
+            self.mostrarDisplay(self.num1)
+        else:
+            self.num2 += btn
+            self.mostrarDisplay(self.num2)
 
     def mostrarDisplay(self, value):
-        value_str = str(value).replace('.', ',')
-        self.entrada.setText(value_str)
+        value = str(value).replace('.',  ',')
+        self.entrada.setText(str(value))
 
     def pegarDisplay(self):
-        value = self.entrada.text()
-        if value:
-            value = value.replace(',', '.')
+        value = self.entrada.text().replace(',', '.')
+        try:
+            return int(value)
+        except ValueError:
             try:
-                value = int(value)
+                return float(value)
             except ValueError:
-                value = float(value)
-        return value
+                return 0
 
-    def btnClicado(self, valor):
-        texto_atual = self.pegarDisplay()
-        if texto_atual == 0 and valor != '0':
-            self.mostrarDisplay(str(valor))
-        else:
-            self.mostrarDisplay(str(texto_atual) + str(valor))
-
-    def definirOperacao(self, operacao):
-        texto_atual = self.pegarDisplay()
-        if texto_atual != 0:
-            self.op = operacao
-            self.mostrarDisplay(f"{texto_atual} {operacao}")
-            self.entrada.clear()
+    def definirOperacao(self, operacao, operador):
+        if self.num1 != "":
+            if operador == '%':
+                self.porcentagem()
+                return
+            self.operador = operacao
+            self.mostrarDisplay(operador)
 
     def mostrarResultado(self):
-        if self.op:
-            self.num2 = self.pegarDisplay()
-            if self.op == '+':
-                self.numResult = self.somar()
-            elif self.op == '-':
-                self.numResult = self.subtrair()
-            elif self.op == '*':
-                self.numResult = self.multiplicar()
-            elif self.op == '/':
-                self.numResult = self.dividir()
-            elif self.op == '%':
-                self.numResult = self.calcularPorcentagem()
-            self.mostrarDisplay(self.numResult)
+        if self.operador is None or self.num2 == "":
+            return
+        
+        num1 = float(self.num1)
+        num2 = float(self.num2)
 
-    def limpar(self):
-        self.num1 = 0
-        self.num2 = 0
-        self.numResult = 0
-        self.op = None
-        self.mostrarDisplay(0)
-
-    def adicionarVirgula(self):
-        texto_atual = self.pegarDisplay()
-        if '.' not in str(texto_atual):
-            self.mostrarDisplay(str(texto_atual) + '.')
+        if self.operador == operator.truediv and num2 == 0:
+            self.log.error("Erro: Divisão por zero")
+            return
+        
+        result = self.operador(num1, num2)
+        if isinstance(result, float) and result.is_integer():
+            result = int(result)
+            
+        self.mostrarDisplay(result)
+        self.num1 = str(result)
+        self.num2 = ""
+        self.operador = None
+        
+    def porcentagem(self):
+        if self.num1 != "":
+            porcento = float(self.num1) / 100
+            self.mostrarDisplay(porcento)
+            self.num1 = ""  
 
     def inverterSinal(self):
-        texto_atual = self.pegarDisplay()
-        texto_atual *= -1
-        self.mostrarDisplay(texto_atual)
-
-    def somar(self):
-        return self.num1 + self.num2
-
-    def subtrair(self):
-        return self.num1 - self.num2
-
-    def multiplicar(self):
-        return self.num1 * self.num2
-
-    def dividir(self):
-        if self.num2 != 0:
-            return self.num1 / self.num2
+        numero = self.pegarDisplay()
+        numero *= -1
+        self.mostrarDisplay(numero)
+        if self.operador is None:
+            self.num1 = str(numero)
         else:
-            return "Erro"
+            self.num2 = str(numero)
 
-    def calcularPorcentagem(self):
-        porcento = self.pegarDisplay() / 100
-        if self.op == '+' or self.op == '-':
-            porcento = self.num1 * porcento
-        return porcento
+    def adicionarVirgula(self):
+        numero = self.pegarDisplay()
+        if "." not in str(numero):
+            numero += "."
+            self.mostrarDisplay(numero)
+            if self.operador is None:
+                self.num1 = str(numero)
+            else:
+                self.num2 = str(numero)
 
+    def limpar(self):
+        self.num1 = ""
+        self.num2 = ""
+        self.operador = None
+        self.mostrarDisplay("")
 
 if __name__ == '__main__':
     app = QApplication([])

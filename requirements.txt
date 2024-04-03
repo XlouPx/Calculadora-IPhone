@@ -27,6 +27,7 @@ python3 -m venv env
 
 # No Windows:
 .\env\Scripts\activate
+env/Scripts/Activate
 
 # No macOS e Linux:
 source env/bin/activate
