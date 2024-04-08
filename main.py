@@ -1,4 +1,3 @@
-from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 from logger import LogManagement
@@ -12,6 +11,7 @@ class MeuApp(QMainWindow):
         self.num1 = ""
         self.num2 = ""
         self.operador = None
+        self.resultado_anterior = None
         self.log = LogManagement(__file__)
 
         loadUi(self.localPath('interface.ui'), self)
@@ -58,18 +58,17 @@ class MeuApp(QMainWindow):
             self.mostrarDisplay(self.num2)
 
     def mostrarDisplay(self, value):
-        value = str(value).replace('.',  ',')
+        if isinstance(value, Decimal) and '.' in str(value):
+            if len(str(value).split('.')[1]) > 2:
+                value = Decimal(value).quantize(Decimal('1.00'))
         self.entrada.setText(str(value))
 
     def pegarDisplay(self):
         value = self.entrada.text().replace(',', '.')
         try:
-            return int(value)
+            return Decimal(value)
         except ValueError:
-            try:
-                return float(value)
-            except ValueError:
-                return 0
+            return Decimal("0")
 
     def definirOperacao(self, operacao, operador):
         if self.num1 != "":
@@ -77,37 +76,40 @@ class MeuApp(QMainWindow):
                 self.porcentagem()
                 return
             self.operador = operacao
+            self.num1 = self.entrada.text()
             self.mostrarDisplay(operador)
+            self.num2 = ""
 
     def mostrarResultado(self):
         if self.operador is None or self.num2 == "":
             return
-        
-        num1 = float(self.num1)
-        num2 = float(self.num2)
 
-        if self.operador == operator.truediv and num2 == 0:
+        num1 = Decimal(self.num1)
+        num2 = Decimal(self.num2)
+
+        if self.operador == operator.truediv and num2 == Decimal("0"):
             self.log.error("Erro: Divisão por zero")
             return
-        
+
         result = self.operador(num1, num2)
-        if isinstance(result, float) and result.is_integer():
+        if result % 1 == 0:
             result = int(result)
-            
+
         self.mostrarDisplay(result)
+        self.resultado_anterior = result
         self.num1 = str(result)
         self.num2 = ""
         self.operador = None
-        
+
     def porcentagem(self):
         if self.num1 != "":
-            porcento = float(self.num1) / 100
+            porcento = Decimal(self.num1) / Decimal("100")
             self.mostrarDisplay(porcento)
-            self.num1 = ""  
+            self.num1 = ""
 
     def inverterSinal(self):
         numero = self.pegarDisplay()
-        numero *= -1
+        numero *= Decimal("-1")
         self.mostrarDisplay(numero)
         if self.operador is None:
             self.num1 = str(numero)
@@ -129,7 +131,7 @@ class MeuApp(QMainWindow):
         self.num1 = ""
         self.num2 = ""
         self.operador = None
-        self.mostrarDisplay("")
+        self.mostrarDisplay("0")
 
 if __name__ == '__main__':
     app = QApplication([])

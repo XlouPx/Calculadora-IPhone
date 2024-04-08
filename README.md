@@ -74,16 +74,14 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
 <table>
   <tr>
-  <table>
-  <tr>
     <td align="center">
       <a href="#" title="Bruno Mendes">
-        <img src="https://avatars.githubusercontent.com/u/164203021?v=40,
-          " width="100px;" alt="Foto do Iuri Silva no GitHub"/><br>
+        <img src="https://avatars.githubusercontent.com/u/78379724?s=96&v=4" width="100px" alt="Foto do Bruno Mendes no GitHub"/><br>
       </a>
     </td>
   </tr>
 </table>
+
 
 ## 😄 Seja um dos contribuidores
  
